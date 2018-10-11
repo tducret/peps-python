@@ -5,6 +5,7 @@
 import requests
 import time
 from urllib.parse import urljoin
+import json
 
 __author__ = """Thibault Ducret"""
 __email__ = 'hello@tducret.com'
@@ -12,8 +13,40 @@ __version__ = '0.0.1'
 
 _BASE_URL = "https://peps.cnes.fr/resto/api/"
 
-_NB_MAX_RESULTATS_REQUETE_PEPS = 500
-_MAX_REQUEST_TRIALS = 5
+_MAX_RESULTS_PER_PEPS_REQUEST = 500
+
+# Properties to extract from the PEPS JSON (properties field)
+# "orbit_direction": "orbitDirection"
+# orbit_direction is the attribute name in the Result class
+# orbitDirection is the property name in PEPS JSON
+_RESULT_PROPERTIES_MAPPING_DICT = {
+    "title": "title",
+    "acquisition_date": "startDate",
+    "platform": "platform",
+    "instrument": "instrument",
+    "sensor_mode": "sensorMode",
+    "orbit_number": "orbitNumber",
+    "quicklook_url": "quicklook",
+    "resource_size": "resourceSize",
+    "publication_date": "published",
+    "cloud_cover": "cloudCover",
+    "orbit_direction": "orbitDirection",
+    "ingestion_date": "dhusIngestDate",
+}
+
+# Result class attributes to return in str() function
+_RESULT_ATTRIBUTES = ["id",
+                      "title",
+                      "acquisition_date",
+                      "platform",
+                      "instrument",
+                      "sensor_mode",
+                      "orbit_number",
+                      "resource_size",
+                      "publication_date",
+                      "cloud_cover",
+                      "orbit_direction",
+                      "ingestion_date"]
 
 
 class Client(object):
@@ -66,3 +99,60 @@ maxRecords={}&page={}&q=&".format(nb_resultats_max, page))
             search_url += "tileid={}".format(id_tuile)
 
         return search_url
+
+
+class Results(object):
+    """Classe des résultats"""
+    def __init__(self, results_json=[]):
+        self.results = []
+        self.json = json.loads(results_json)
+        self._get_results()
+
+    def _get_results(self):
+        for resultat_dict in self.json.get("features"):
+            self.results.append(Result(resultat_dict))
+
+    def __repr__(self):
+        chaine = ""
+        for resultat in self.results:
+            chaine += str(resultat)
+        return chaine  # json.dumps(self.results, indent=1)
+
+    def __len__(self):
+        return len(self.results)
+
+    def __getitem__(self, key):
+        """ Method to access the object as a list
+        (ex : results[1]) """
+        return self.results[key]
+
+
+class Result(object):
+    """Classe d'un résultat"""
+    def __init__(self, result_dict={}):
+        self.result = result_dict
+        self.id = self.result["id"]
+
+        self.properties = self.result["properties"]
+
+        for key, value in _RESULT_PROPERTIES_MAPPING_DICT.items():
+            setattr(self, key, self.properties[value])
+
+        temp = self.properties["services"]
+        self.download_url = temp["download"]["url"]
+
+        self.geometry = self.result["geometry"]
+
+    def __str__(self):
+        str_result = ""
+        for key in _RESULT_ATTRIBUTES:
+            str_result += "{} : {}, ".format(key, getattr(self, key))
+        return str_result
+
+    def __repr__(self):
+        return str(self)
+
+    def __getattr__(self, attr):
+        """ Méthode pour accéder à la clé d'un dictionnaire comme un
+        attribut (ex : result.properties) """
+        return self.result.get(attr, "")
