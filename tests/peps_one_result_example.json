@@ -1,0 +1,337 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "title": "",
+    "id": "5739d4e5-a5c8-5dfb-847e-47d5fb343b1b",
+    "totalResults": 20348,
+    "exactCount": false,
+    "startIndex": 1,
+    "itemsPerPage": 1,
+    "totalItemsPerPage": "1",
+    "query": {
+      "searchFilters": {
+        "language": "fr",
+        "count": "1",
+        "startPage": "1",
+        "eo:platform": "S2A",
+        "searchTerms": "",
+        "time:start": "2018-10-03T10:09:00"
+      },
+      "analysis": {
+        "query": ""
+      },
+      "processingTime": 0.041322946548462
+    },
+    "links": [
+      {
+        "rel": "self",
+        "type": "application/json",
+        "title": "self",
+        "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&maxRecords=1&page=1&platform=S2A&q=&startDate=2018-10-03T10%3A09%3A00"
+      },
+      {
+        "rel": "search",
+        "type": "application/opensearchdescription+xml",
+        "title": "OpenSearch Description Document",
+        "href": "https://peps.cnes.fr/resto/api/collections/S2ST/describe.xml"
+      },
+      {
+        "rel": "next",
+        "type": "application/json",
+        "title": "suivant",
+        "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&maxRecords=1&page=2&platform=S2A&q=&startDate=2018-10-03T10%3A09%3A00"
+      },
+      {
+        "rel": "last",
+        "type": "application/json",
+        "title": "dernier",
+        "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&maxRecords=1&page=20348&platform=S2A&q=&startDate=2018-10-03T10%3A09%3A00"
+      }
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "05959e39-ce82-5b39-9a30-e67ea0417204",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              79.196529238145,
+              51.080610805157
+            ],
+            [
+              79.260916544418,
+              51.206319603373
+            ],
+            [
+              79.33549261572,
+              51.350393137698
+            ],
+            [
+              79.3456076805,
+              51.369888094844
+            ],
+            [
+              77.875717288603,
+              51.415897696398
+            ],
+            [
+              77.872965276514,
+              51.370820764312
+            ],
+            [
+              78.117497250255,
+              51.321247423703
+            ],
+            [
+              78.183693256608,
+              51.307893648617
+            ],
+            [
+              78.183802670128,
+              51.308117736348
+            ],
+            [
+              78.183911249595,
+              51.30809422571
+            ],
+            [
+              78.183924790171,
+              51.308121991031
+            ],
+            [
+              78.495970477923,
+              51.240653337507
+            ],
+            [
+              78.495803340047,
+              51.240315407424
+            ],
+            [
+              78.498974774734,
+              51.239630404778
+            ],
+            [
+              78.498902704399,
+              51.239484730794
+            ],
+            [
+              78.521858848564,
+              51.234555343345
+            ],
+            [
+              78.522012864684,
+              51.234864683595
+            ],
+            [
+              78.755956982801,
+              51.18315106583
+            ],
+            [
+              78.851685501983,
+              51.162234032159
+            ],
+            [
+              78.851722776731,
+              51.162308064561
+            ],
+            [
+              78.85185376402,
+              51.16227690721
+            ],
+            [
+              78.851930924459,
+              51.162430332115
+            ],
+            [
+              79.196529238145,
+              51.080610805157
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "collection": "S2ST",
+        "productIdentifier": "S2A_MSIL1C_20181011T055751_N0206_R091_T43UGS_20181011T072546",
+        "parentIdentifier": "urn:ogc:def:EOP:ESA::SENTINEL-2:",
+        "title": "S2A_MSIL1C_20181011T055751_N0206_R091_T43UGS_20181011T072546",
+        "description": null,
+        "organisationName": null,
+        "startDate": "2018-10-11T05:57:51.024Z",
+        "completionDate": "2018-10-11T05:57:51.024Z",
+        "productType": "S2MSI1C",
+        "processingLevel": "LEVEL1C",
+        "platform": "S2A",
+        "instrument": "MSI",
+        "resolution": null,
+        "sensorMode": "INS-NOBS",
+        "orbitNumber": 17248,
+        "quicklook": "https://peps.cnes.fr/quicklook/2018/10/11/S2A/S2A_MSIL1C_20181011T055751_N0206_R091_T43UGS_20181011T072546_quicklook.jpg",
+        "thumbnail": null,
+        "resourceSize": 128062896,
+        "resourceChecksum": "92138B9AB49EAD2706C89935E62215CF",
+        "updated": "2018-10-11T09:51:25.135Z",
+        "published": "2018-10-11T09:51:25.135Z",
+        "snowCover": null,
+        "cloudCover": 3.4153,
+        "keywords": {
+          "94f9d48c6d00902": {
+            "name": "Asie",
+            "normalized": "asia",
+            "type": "continent",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Asie"
+          },
+          "a946f071a2c93c0": {
+            "name": "Kazakhstan",
+            "normalized": "kazakhstan",
+            "type": "country",
+            "parentHash": "94f9d48c6d00902",
+            "value": 100,
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Kazakhstan"
+          },
+          "aa582ada994e4e5": {
+            "name": "_all",
+            "normalized": "_all",
+            "type": "region",
+            "parentHash": "a946f071a2c93c0",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=_all"
+          },
+          "4280134d7ab692c": {
+            "name": "East Kazakhstan",
+            "normalized": "east-kazakhstan",
+            "type": "state",
+            "parentHash": "aa582ada994e4e5",
+            "value": 57.47,
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=%22East%20Kazakhstan%22"
+          },
+          "2c10c7bbe6eff46": {
+            "name": "Pavlodar",
+            "normalized": "pavlodar",
+            "type": "state",
+            "parentHash": "aa582ada994e4e5",
+            "value": 41.86,
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Pavlodar"
+          },
+          "a0e4a10aa754ab4": {
+            "name": "Northern",
+            "type": "location",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Northern"
+          },
+          "f3221bcc6ca49ca": {
+            "name": "Autumn",
+            "type": "season",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Autumn"
+          },
+          "45038f3c2322ea3": {
+            "name": "S2ST",
+            "type": "collection",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=S2ST"
+          },
+          "6219554ecf5905c": {
+            "name": "S2MSI1C",
+            "type": "productType",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=S2MSI1C"
+          },
+          "44b15c0a6e62129": {
+            "name": "LEVEL1C",
+            "type": "processingLevel",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=LEVEL1C"
+          },
+          "afe9ad14455c260": {
+            "name": "s2A",
+            "type": "platform",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=s2A"
+          },
+          "503f8f6199f3e44": {
+            "name": "msi",
+            "type": "instrument",
+            "parentHash": "afe9ad14455c260",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=msi"
+          },
+          "3f85bb5d775e1fc": {
+            "name": "INS-NOBS",
+            "type": "sensorMode",
+            "parentHash": "503f8f6199f3e44",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=INS-NOBS"
+          },
+          "e8f96b7c46c0d54": {
+            "name": "Descending",
+            "type": "orbitDirection",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Descending"
+          },
+          "c0706bb19e22342": {
+            "name": "0",
+            "type": "isNrt",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=0"
+          },
+          "adbd1cc9d2fe94b": {
+            "name": "Nominal",
+            "type": "realtime",
+            "parentHash": "c0706bb19e22342",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Nominal"
+          },
+          "429f9571d35a7f4": {
+            "name": "2018",
+            "type": "year",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=2018"
+          },
+          "49e1a4224ca0171": {
+            "name": "Octobre",
+            "type": "month",
+            "parentHash": "429f9571d35a7f4",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=Octobre"
+          },
+          "ecf087f9e6cee99": {
+            "name": "11",
+            "type": "day",
+            "parentHash": "49e1a4224ca0171",
+            "href": "https://peps.cnes.fr/resto/api/collections/S2ST/search.json?&lang=fr&q=11"
+          }
+        },
+        "visible": 1,
+        "orbitDirection": "descending",
+        "newVersion": null,
+        "isNrt": 0,
+        "realtime": "Nominal",
+        "dhusIngestDate": "2018-10-11T09:47:28.990Z",
+        "relativeOrbitNumber": 91,
+        "s2TakeId": "GS2A_20181011T055751_017248_N02.06",
+        "mgrs": "43UGS",
+        "bareSoil": null,
+        "highProbaClouds": null,
+        "mediumProbaClouds": null,
+        "lowProbaClouds": null,
+        "snowIce": null,
+        "vegetation": null,
+        "water": null,
+        "services": {
+          "download": {
+            "url": "https://peps.cnes.fr/resto/collections/S2ST/05959e39-ce82-5b39-9a30-e67ea0417204/download",
+            "mimeType": "application/zip",
+            "size": 128062896,
+            "checksum": "92138B9AB49EAD2706C89935E62215CF"
+          }
+        },
+        "links": [
+          {
+            "rel": "alternate",
+            "type": "application/json",
+            "title": "Lien GeoJSON pour 05959e39-ce82-5b39-9a30-e67ea0417204",
+            "href": "https://peps.cnes.fr/resto/collections/S2ST/05959e39-ce82-5b39-9a30-e67ea0417204.json?&lang=fr"
+          },
+          {
+            "rel": "alternate",
+            "type": "application/atom+xml",
+            "title": "Lien ATOM pour 05959e39-ce82-5b39-9a30-e67ea0417204",
+            "href": "https://peps.cnes.fr/resto/collections/S2ST/05959e39-ce82-5b39-9a30-e67ea0417204.atom?&lang=fr"
+          }
+        ],
+        "storage": {
+          "mode": "disk"
+        }
+      }
+    }
+  ]
+}
