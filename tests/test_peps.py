@@ -113,3 +113,13 @@ def test_find_products():
     assert len(results) == _images_a_recuperer
     for result in results:
         assert result.collection == "S2ST"
+
+
+def test_find_many_products():
+    _images_a_recuperer = 10000
+    results = peps.find_products(collection="S2ST",
+                                 nb_resultats_max=_images_a_recuperer)
+    assert type(results) == peps.Results
+    assert len(results) == _images_a_recuperer
+    for result in results:
+        assert result.collection == "S2ST"
