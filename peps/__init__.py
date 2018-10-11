@@ -60,10 +60,10 @@ def _build_search_url(id_tuile=None, collection=None,
             search_url = urljoin(search_url, "{}/".format(collection))
 
         search_url = urljoin(search_url, "search.json?lang=fr&\
-maxRecords={}&page={}&q=".format(nb_resultats_max, page))
+maxRecords={}&page={}&q=&".format(nb_resultats_max, page))
 
         if (id_tuile is not None) and (id_tuile != ""):
-            search_url += "&tileid={}".format(id_tuile)
+            search_url += "tileid={}".format(id_tuile)
 
         print(search_url)
         return search_url

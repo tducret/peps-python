@@ -8,6 +8,8 @@
 #import pytest
 import peps
 
+_BASE_URL = "https://peps.cnes.fr/resto/api/"
+
 
 def test_class_Client():
     c = peps.Client()
@@ -15,8 +17,28 @@ def test_class_Client():
     assert ret.status_code == 200
 
 
-def _build_search_url():
-    url = peps._build_search_url(id_tuile=None, collection="S2ST",
-                                 nb_resultats_max=50, page=1)
-    assert url == "https://peps.cnes.fr/resto/api/collections/S2ST/\
-search.json?lang=fr&maxRecords=50&page=1&platform=S2A&q=&"
+def test_build_search_url():
+    # Sentinel 2 tuilé
+    url = peps._build_search_url(collection="S2ST")
+    assert url == _BASE_URL + "collections/S2ST/\
+search.json?lang=fr&maxRecords=100&page=1&q=&"
+
+    # Tous sentinels confondus, tuile 31TCJ
+    url = peps._build_search_url(id_tuile="31TCJ")
+    assert url == _BASE_URL + "collections/\
+search.json?lang=fr&maxRecords=100&page=1&q=&tileid=31TCJ"
+
+    # Tuile 31TCJ
+    url = peps._build_search_url(id_tuile="31TCJ")
+    assert url == _BASE_URL + "collections/\
+search.json?lang=fr&maxRecords=100&page=1&q=&tileid=31TCJ"
+
+    # page 2
+    url = peps._build_search_url(page=2)
+    assert url == _BASE_URL + "collections/\
+search.json?lang=fr&maxRecords=100&page=2&q=&"
+
+    # 10 résultats maximum
+    url = peps._build_search_url(nb_resultats_max=10)
+    assert url == _BASE_URL + "collections/\
+search.json?lang=fr&maxRecords=10&page=1&q=&"
