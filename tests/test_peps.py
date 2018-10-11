@@ -19,6 +19,13 @@ _PEPS_JSON_ONE_RESULT_STR = json_file_to_string(
     'tests/peps_one_result_example.json')
 
 
+# --- Results class ---
+def test_class_Results():
+    r = peps.Results(_PEPS_JSON_ONE_RESULT_STR)
+    assert len(r) == 1
+    assert r[0].id == "05959e39-ce82-5b39-9a30-e67ea0417204"
+
+
 # --- Result class ---
 def test_class_Result():
     json_obj = json.loads(_PEPS_JSON_ONE_RESULT_STR)
@@ -30,6 +37,7 @@ def test_class_Result():
     assert r.title == \
         "S2A_MSIL1C_20181011T055751_N0206_R091_T43UGS_20181011T072546"
     assert r.platform == "S2A"
+    assert r.platform == "S2ST"
     assert r.acquisition_date == "2018-10-11T05:57:51.024Z"
     assert r.instrument == "MSI"
     assert r.sensor_mode == "INS-NOBS"
@@ -39,6 +47,8 @@ def test_class_Result():
     assert r.cloud_cover == 3.4153
     assert r.orbit_direction == "descending"
     assert r.ingestion_date == "2018-10-11T09:47:28.990Z"
+    assert r.download_url == "https://peps.cnes.fr/resto/collections/S2ST/\
+05959e39-ce82-5b39-9a30-e67ea0417204/download"
 
 
 # --- Client class ---
@@ -91,3 +101,15 @@ search.json?lang=fr&maxRecords=100&page=2&q=&"
     print(url)
     assert url == _BASE_URL + "collections/\
 search.json?lang=fr&maxRecords=10&page=1&q=&"
+
+
+def test_find_products():
+    # Pour tester que la fonction peut rechercher au-delà de la 1ère page de
+    # résultats, on demande le nombre max + 1
+    _images_a_recuperer = peps._MAX_RESULTS_PER_PEPS_REQUEST + 1
+    results = peps.find_products(collection="S2ST",
+                                 nb_resultats_max=_images_a_recuperer)
+    assert type(results) == peps.Results
+    assert len(results) == _images_a_recuperer
+    for result in results:
+        assert result.collection == "S2ST"

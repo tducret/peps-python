@@ -21,6 +21,7 @@ _MAX_RESULTS_PER_PEPS_REQUEST = 500
 # orbitDirection is the property name in PEPS JSON
 _RESULT_PROPERTIES_MAPPING_DICT = {
     "title": "title",
+    "collection": "collection",
     "acquisition_date": "startDate",
     "platform": "platform",
     "instrument": "instrument",
@@ -37,6 +38,7 @@ _RESULT_PROPERTIES_MAPPING_DICT = {
 # Result class attributes to return in str() function
 _RESULT_ATTRIBUTES = ["id",
                       "title",
+                      "collection",
                       "acquisition_date",
                       "platform",
                       "instrument",
@@ -49,6 +51,7 @@ _RESULT_ATTRIBUTES = ["id",
                       "ingestion_date"]
 
 
+# --- Client class ---
 class Client(object):
     """Fait les requêtes avec l'API PEPS"""
 
@@ -84,29 +87,14 @@ class Client(object):
         return retour
 
 
-def _build_search_url(id_tuile=None, collection=None,
-                      nb_resultats_max=100, page=1):
-        """ Construit l'url de requete PEPS """
-        search_url = urljoin(_BASE_URL, "collections/")
-
-        if (collection is not None) and (collection != ""):
-            search_url = urljoin(search_url, "{}/".format(collection))
-
-        search_url = urljoin(search_url, "search.json?lang=fr&\
-maxRecords={}&page={}&q=&".format(nb_resultats_max, page))
-
-        if (id_tuile is not None) and (id_tuile != ""):
-            search_url += "tileid={}".format(id_tuile)
-
-        return search_url
-
-
+# --- Results class ---
 class Results(object):
     """Classe des résultats"""
     def __init__(self, results_json=[]):
         self.results = []
-        self.json = json.loads(results_json)
-        self._get_results()
+        if results_json != []:
+            self.json = json.loads(results_json)
+            self._get_results()
 
     def _get_results(self):
         for resultat_dict in self.json.get("features"):
@@ -126,7 +114,11 @@ class Results(object):
         (ex : results[1]) """
         return self.results[key]
 
+    def __getattr__(self, method):
+        return getattr(self.results, method)
 
+
+# --- Result class ---
 class Result(object):
     """Classe d'un résultat"""
     def __init__(self, result_dict={}):
@@ -156,3 +148,68 @@ class Result(object):
         """ Méthode pour accéder à la clé d'un dictionnaire comme un
         attribut (ex : result.properties) """
         return self.result.get(attr, "")
+
+
+# --- Other functions ---
+def _build_search_url(id_tuile=None, collection=None,
+                      nb_resultats_max=100, page=1):
+        """ Construit l'url de requete PEPS """
+        search_url = urljoin(_BASE_URL, "collections/")
+
+        if (collection is not None) and (collection != ""):
+            search_url = urljoin(search_url, "{}/".format(collection))
+
+        search_url = urljoin(search_url, "search.json?lang=fr&\
+maxRecords={}&page={}&q=&".format(nb_resultats_max, page))
+
+        if (id_tuile is not None) and (id_tuile != ""):
+            search_url += "tileid={}".format(id_tuile)
+
+        return search_url
+
+
+def find_products(id_tuile=None, collection=None, nb_resultats_max=100):
+    """ Rechercher les prise de vue sur PEPS
+    (avec gestion de la pagination) """
+    peps = Client()
+    liste_resultats = Results()
+
+    # On tronque le nombre de résultats max par requête au maximum
+    # supporté par PEPS
+    if nb_resultats_max > _MAX_RESULTS_PER_PEPS_REQUEST:
+        nb_resultats_max_requete = _MAX_RESULTS_PER_PEPS_REQUEST
+    else:
+        nb_resultats_max_requete = nb_resultats_max
+
+    page = 1
+    while True:
+        # Combien restent-ils de produit à rechercher?
+        # Ex :
+        # 1er passage dans la boucle : nb_resultats_restants = 501 - 0
+        # 2ème passage : nb_resultats_restants = 501 - 500
+        nb_resultats_restants = nb_resultats_max - len(liste_resultats)
+        # S'il en reste moins que le nombre max par requête
+        # 1er passage dans la boucle : 501 > 500
+        # 2ème passage dans la boucle : 1 < 500 => On ne demandera donc qu'un
+        # résultat dans la 2ème requête
+        if nb_resultats_restants < nb_resultats_max_requete:
+            nb_resultats_max_requete = nb_resultats_restants
+        resultats_json = peps._rechercher_images(
+            id_tuile=id_tuile,
+            collection=collection,
+            nb_resultats_max=nb_resultats_max_requete, page=page)
+
+        resultats = Results(resultats_json)
+
+        liste_resultats.extend(resultats)
+
+        if len(liste_resultats) >= nb_resultats_max:
+            # Nous avons le nombre de résultats demandé
+            break
+        elif len(resultats) == 0:
+            # Nous sommes arrivés au bout des résultats
+            break
+        else:
+            page += 1
+
+    return liste_resultats
