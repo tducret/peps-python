@@ -3,67 +3,76 @@
 """Top-level package for PEPS Python."""
 
 import requests
-from requests import ConnectionError
+import time
+from urllib.parse import urljoin
 
 __author__ = """Thibault Ducret"""
 __email__ = 'hello@tducret.com'
 __version__ = '0.0.1'
 
+_BASE_URL = "https://peps.cnes.fr/resto/api/"
+
+_NB_MAX_RESULTATS_REQUETE_PEPS = 500
+_MAX_REQUEST_TRIALS = 5
+
 
 class Client(object):
-    """ Do the requests with the servers """
+    """Fait les requêtes avec l'API PEPS"""
+
     def __init__(self):
+        """ Init du client """
+
         self.session = requests.session()
         self.headers = {
-                    'Host': 'myhost.com',
-                    'User-Agent': 'User agent',
+                    'Host': 'peps.cnes.fr',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; \
+                        WOW64; rv:59.0) Gecko/20100101 Firefox/59.0',
+                    'Accept': 'application/json, text/plain, */*',
                     }
 
-    def _get(self, url, expected_status_code=200):
-        ret = self.session.get(url=url, headers=self.headers)
-        if (ret.status_code != expected_status_code):
-            raise ConnectionError(
-                'Status code {status} for url {url}\n{content}'.format(
-                    status=ret.status_code, url=url, content=ret.text))
+    def _get(self, url):
+        """ Requête GET """
+        trials = 0
+        while trials < _MAX_REQUEST_TRIALS:
+            try:
+                trials += 1
+                ret = self.session.get(url, headers=self.headers)
+            except requests.ConnectionError:
+                print("ConnectionError : {}".format(trials))
+                time.sleep(10)
+                pass
         return ret
 
-    def _post(self, url, post_data, expected_status_code=200):
-        ret = self.session.post(url=url,
-                                headers=self.headers,
-                                data=post_data)
-        if (ret.status_code != expected_status_code):
-            raise ConnectionError(
-                'Status code {status} for url {url}\n{content}'.format(
-                    status=ret.status_code, url=url, content=ret.text))
-        return ret
+    def _rechercher_images(self, id_tuile=None, collection=None,
+                           nb_resultats_max=100, page=1):
+        """ Rechercher les prise de vue pour l'identifiant de tuile indiqué """
+
+        search_url = _build_search_url(id_tuile=id_tuile,
+                                       collection=collection,
+                                       nb_resultats_max=nb_resultats_max,
+                                       page=page)
+        requete = self._get(search_url)
+
+        if requete.status_code != 200:  # 200 = OK
+            raise requests.ConnectionError
+        else:
+            retour = requete.text
+        return retour
 
 
-class MyClass(object):
-    """ Class to... """
-    def __init__(self, param1, list1, dict1):
-        self.param1 = param1
-        self.list1 = list1
-        self.dict1 = dict1
+def _build_search_url(id_tuile=None, collection=None,
+                      nb_resultats_max=100, page=1):
+        """ Construit l'url de requete PEPS """
+        search_url = urljoin(_BASE_URL, "collections/")
 
-    def get_param1(self):
-        """ Get the param1 """
-        return(self.param1)
+        if (collection is not None) and (collection != ""):
+            search_url = urljoin(search_url, "{}/".format(collection))
 
-    def __str__(self):
-        return('{}'.format(self.param1))
+        search_url = urljoin(search_url, "search.json?lang=fr&\
+maxRecords={}&page={}&q=".format(nb_resultats_max, page))
 
-    def __repr__(self):
-        return("Myclass(param1={})".format(self.param1))
+        if (id_tuile is not None) and (id_tuile != ""):
+            search_url += "&tileid={}".format(id_tuile)
 
-    def __len__(self):
-        return len(self.list1)
-
-    def __getitem__(self, key):
-        """ Méthod to access the object as a list
-        (ex : list1[1]) """
-        return self.list[key]
-
-    def __getattr__(self, attr):
-        """ Method to access a dictionnary key as an attribute
-        (ex : dict1.my_key) """
-        return self.dict1.get(attr, "")
+        print(search_url)
+        return search_url
