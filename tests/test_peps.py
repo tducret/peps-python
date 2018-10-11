@@ -37,7 +37,7 @@ def test_class_Result():
     assert r.title == \
         "S2A_MSIL1C_20181011T055751_N0206_R091_T43UGS_20181011T072546"
     assert r.platform == "S2A"
-    assert r.platform == "S2ST"
+    assert r.collection == "S2ST"
     assert r.acquisition_date == "2018-10-11T05:57:51.024Z"
     assert r.instrument == "MSI"
     assert r.sensor_mode == "INS-NOBS"
