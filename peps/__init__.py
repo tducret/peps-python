@@ -32,16 +32,7 @@ class Client(object):
 
     def _get(self, url):
         """ Requête GET """
-        trials = 0
-        while trials < _MAX_REQUEST_TRIALS:
-            try:
-                trials += 1
-                ret = self.session.get(url, headers=self.headers)
-            except requests.ConnectionError:
-                print("ConnectionError : {}".format(trials))
-                time.sleep(10)
-                pass
-        return ret
+        return self.session.get(url, headers=self.headers)
 
     def _rechercher_images(self, id_tuile=None, collection=None,
                            nb_resultats_max=100, page=1):

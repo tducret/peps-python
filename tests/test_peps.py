@@ -11,7 +11,7 @@ import peps
 
 def test_class_Client():
     c = peps.Client()
-    ret = c._get("http://example.com")
+    ret = c._get("http://www.example.com")
     assert ret.status_code == 200
 
 
