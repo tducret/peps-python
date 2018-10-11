@@ -65,5 +65,4 @@ maxRecords={}&page={}&q=&".format(nb_resultats_max, page))
         if (id_tuile is not None) and (id_tuile != ""):
             search_url += "tileid={}".format(id_tuile)
 
-        print(search_url)
         return search_url
