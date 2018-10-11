@@ -7,7 +7,7 @@
 
 ## Description
 
-Python wrapper for peps.cnes.fr
+Python wrapper for peps.cnes.fr.
 
 # Requirements
 
