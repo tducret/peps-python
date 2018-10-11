@@ -103,7 +103,17 @@ search.json?lang=fr&maxRecords=100&page=2&q=&"
 search.json?lang=fr&maxRecords=10&page=1&q=&"
 
 
-def test_find_products():
+def test_find_products_basic():
+    _images_a_recuperer = 50
+    results = peps.find_products(collection="S3",
+                                 nb_resultats_max=_images_a_recuperer)
+    assert type(results) == peps.Results
+    assert len(results) == _images_a_recuperer
+    for result in results:
+        assert result.collection == "S3"
+
+
+def test_find_products_with_pagination():
     # Pour tester que la fonction peut rechercher au-delà de la 1ère page de
     # résultats, on demande le nombre max + 1
     _images_a_recuperer = peps._MAX_RESULTS_PER_PEPS_REQUEST + 1
@@ -116,7 +126,7 @@ def test_find_products():
 
 
 def test_find_many_products():
-    _images_a_recuperer = 10000
+    _images_a_recuperer = 1000
     results = peps.find_products(collection="S2ST",
                                  nb_resultats_max=_images_a_recuperer)
     assert type(results) == peps.Results
