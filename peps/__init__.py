@@ -117,6 +117,12 @@ class Results(object):
     def __getattr__(self, method):
         return getattr(self.results, method)
 
+    def __str__(self):
+        s = ""
+        for r in self.results:
+            s += str(r) + "\n"
+        return s
+
 
 # --- Result class ---
 class Result(object):

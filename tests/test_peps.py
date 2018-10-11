@@ -111,6 +111,8 @@ def test_find_products_basic():
     assert len(results) == _images_a_recuperer
     for result in results:
         assert result.collection == "S3"
+    print()
+    print(results)
 
 
 def test_find_products_with_pagination():

@@ -8,8 +8,8 @@ def main():
     results = peps.find_products(collection="S2ST",
                                  nb_resultats_max=500)
 
-    with open("peps.json", "a") as f:
-        f.write(results)
+    with open("peps.json", "w") as f:
+        f.write(str(results))
 
 # Puis faire l'import avec :
 # curl -H 'Content-Type: application/x-ndjson' \
