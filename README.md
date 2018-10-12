@@ -76,4 +76,6 @@ S2A,47XPA,S2A_MSIL1C_20181012T052741_N0206_R105_T47XPA_20181012T063644,2018-10-1
 
 ## TODO
 
-- [ ] 
+- [ ] Add multithreading?
+- [ ] Publish package to pypi
+- [ ] Calculate center of polygon and extract it for Kibana (geo_point), with shapely package
