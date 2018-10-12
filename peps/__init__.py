@@ -14,6 +14,7 @@ __version__ = '0.0.1'
 _BASE_URL = "https://peps.cnes.fr/resto/api/"
 
 _MAX_RESULTS_PER_PEPS_REQUEST = 500
+_MAX_REQUEST_TRIALS = 10  # Maximum number of request trials
 
 # Properties to extract from the PEPS JSON (properties field)
 # "orbit_direction": "orbitDirection"
@@ -70,20 +71,30 @@ class Client(object):
         """ Requête GET """
         return self.session.get(url, headers=self.headers)
 
-    def _rechercher_images(self, id_tuile=None, collection=None,
-                           nb_resultats_max=100, page=1):
+    def _get_with_retry(self, url):
+        """ GET request with retry if a connection error happens """
+        trials = 0
+        while trials < _MAX_REQUEST_TRIALS:
+            try:
+                trials += 1
+                ret = self._get(url)
+            except requests.exceptions.ConnectionError:
+                print("ConnectionError : {}".format(trials))
+                time.sleep(10)
+                pass
+        return ret
+
+    def _find_products(self, id_tuile=None, collection=None,
+                       nb_resultats_max=100, page=1):
         """ Rechercher les prise de vue pour l'identifiant de tuile indiqué """
 
         search_url = _build_search_url(id_tuile=id_tuile,
                                        collection=collection,
                                        nb_resultats_max=nb_resultats_max,
                                        page=page)
-        requete = self._get(search_url)
+        requete = self._get_with_retry(search_url)
 
-        if requete.status_code != 200:  # 200 = OK
-            raise requests.ConnectionError
-        else:
-            retour = requete.text
+        retour = requete.text
         return retour
 
 
@@ -200,7 +211,7 @@ def find_products(id_tuile=None, collection=None, nb_resultats_max=100):
         # résultat dans la 2ème requête
         if nb_resultats_restants < nb_resultats_max_requete:
             nb_resultats_max_requete = nb_resultats_restants
-        resultats_json = peps._rechercher_images(
+        resultats_json = peps._find_products(
             id_tuile=id_tuile,
             collection=collection,
             nb_resultats_max=nb_resultats_max_requete, page=page)

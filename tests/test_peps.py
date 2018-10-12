@@ -58,12 +58,12 @@ def test_class_Client():
     assert ret.status_code == 200
 
 
-def test_rechercher_images():
+def test_find_products():
     _images_a_recuperer = 10
     c = peps.Client()
-    res_json = c._rechercher_images(id_tuile=None, collection=None,
-                                    nb_resultats_max=_images_a_recuperer,
-                                    page=1)
+    res_json = c._find_products(id_tuile=None, collection=None,
+                                nb_resultats_max=_images_a_recuperer,
+                                page=1)
     res = json.loads(res_json)
     resultats = res.get("features")
     assert len(resultats) == _images_a_recuperer
