@@ -54,6 +54,8 @@ def test_class_Result():
     assert r.processing_level == "LEVEL1C"
     assert r.storage_mode == "disk"
     assert r.tile_id == "43UGS"
+    assert r.country == "Kazakhstan"
+    assert r.continent == "Asie"
 
 
 # --- Client class ---

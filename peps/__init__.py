@@ -60,7 +60,9 @@ _RESULT_ATTRIBUTES = ["id",
                       "processing_level",
                       "snow_cover",
                       "storage_mode",
-                      "tile_id"]
+                      "tile_id",
+                      "country",
+                      "continent"]
 
 
 # --- Client class ---
@@ -165,6 +167,9 @@ class Result(object):
 
         self.storage_mode = self.properties["storage"]["mode"]
 
+        self.country = self._get_country(self.properties["keywords"])
+        self.continent = self._get_continent(self.properties["keywords"])
+
     def __str__(self):
         str_result = ""
         for key in _RESULT_ATTRIBUTES:
@@ -178,6 +183,20 @@ class Result(object):
         """ Méthode pour accéder à la clé d'un dictionnaire comme un
         attribut (ex : result.properties) """
         return self.result.get(attr, "")
+
+    def _get_keyword_value(self, keywords, keyword_type):
+        keyword_value = ""
+        for key, value in keywords.items():
+            if value.get("type", "") == keyword_type:
+                keyword_value = value.get("name")
+                break
+        return keyword_value
+
+    def _get_country(self, keywords):
+        return self._get_keyword_value(keywords, keyword_type="country")
+
+    def _get_continent(self, keywords):
+        return self._get_keyword_value(keywords, keyword_type="continent")
 
 
 # --- Other functions ---
