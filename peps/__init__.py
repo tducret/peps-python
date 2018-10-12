@@ -164,6 +164,9 @@ class Result(object):
         for key, value in _RESULT_PROPERTIES_MAPPING_DICT.items():
             setattr(self, key, self.properties.get(value, ""))
 
+        if (self.tile_id == "" and self.collection == "S2ST"):
+            self.tile_id = self.title.split("_")[-2][1:]
+
         temp = self.properties["services"]
         self.download_url = temp["download"]["url"]
 
@@ -288,3 +291,22 @@ def find_products(id_tuile=None, collection=None, nb_resultats_max=100,
             page += 1
 
     return liste_resultats
+
+
+def _get_tile_id_from_title(title):
+    """ Extract a tile_id from S2ST product title
+> _get_tile_id_from_title(\
+"S2B_MSIL1C_20181012T025639_N0206_R032_T50TNQ_20181012T054303")
+50TNQ
+"""
+    try:
+        title_split = title.split("_")
+        # Check that it is a S2 product
+        if (len(title_split) == 7) and ("S2" in title_split[0]):
+            tile_id = title_split[-2]
+            tile_id = tile_id[1:]  # Remove first 'T' character
+        else:
+            tile_id = ""
+    except:
+        tile_id = ""
+    return tile_id

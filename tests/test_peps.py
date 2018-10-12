@@ -160,3 +160,11 @@ def test_find_products_for_one_specific_hour():
     for result in results:
         print(result.acquisition_date)
         assert "2018-01-01T00:" in result.acquisition_date
+
+
+def test_get_tile_id_from_title():
+    assert peps._get_tile_id_from_title("NOT_A_GOOD_TITLE") == ""
+    assert peps._get_tile_id_from_title("S2A_WRONG") == ""
+    assert peps._get_tile_id_from_title(
+        "S2B_MSIL1C_20181012T025639_N0206_R032_T50TNQ_20181012T054303") == \
+        "50TNQ"
