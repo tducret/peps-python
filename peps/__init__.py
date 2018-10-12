@@ -27,13 +27,18 @@ _RESULT_PROPERTIES_MAPPING_DICT = {
     "platform": "platform",
     "instrument": "instrument",
     "sensor_mode": "sensorMode",
-    "orbit_number": "orbitNumber",
+    "absolute_orbit_number": "orbitNumber",
+    "relative_orbit_number": "relativeOrbitNumber",
+    "orbit_direction": "orbitDirection",
     "quicklook_url": "quicklook",
     "resource_size": "resourceSize",
     "publication_date": "published",
     "cloud_cover": "cloudCover",
-    "orbit_direction": "orbitDirection",
     "ingestion_date": "dhusIngestDate",
+    "product_type": "productType",
+    "processing_level": "processingLevel",
+    "snow_cover": "snowCover",
+    "tile_id": "mgrs",
 }
 
 # Result class attributes to return in str() function
@@ -44,12 +49,18 @@ _RESULT_ATTRIBUTES = ["id",
                       "platform",
                       "instrument",
                       "sensor_mode",
-                      "orbit_number",
+                      "absolute_orbit_number",
+                      "relative_orbit_number",
+                      "orbit_direction",
                       "resource_size",
                       "publication_date",
                       "cloud_cover",
-                      "orbit_direction",
-                      "ingestion_date"]
+                      "ingestion_date",
+                      "product_type",
+                      "processing_level",
+                      "snow_cover",
+                      "storage_mode",
+                      "tile_id"]
 
 
 # --- Client class ---
@@ -145,12 +156,14 @@ class Result(object):
         self.properties = self.result["properties"]
 
         for key, value in _RESULT_PROPERTIES_MAPPING_DICT.items():
-            setattr(self, key, self.properties[value])
+            setattr(self, key, self.properties.get(value, ""))
 
         temp = self.properties["services"]
         self.download_url = temp["download"]["url"]
 
         self.geometry = self.result["geometry"]
+
+        self.storage_mode = self.properties["storage"]["mode"]
 
     def __str__(self):
         str_result = ""

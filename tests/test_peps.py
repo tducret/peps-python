@@ -41,7 +41,8 @@ def test_class_Result():
     assert r.acquisition_date == "2018-10-11T05:57:51.024Z"
     assert r.instrument == "MSI"
     assert r.sensor_mode == "INS-NOBS"
-    assert r.orbit_number == 17248
+    assert r.absolute_orbit_number == 17248
+    assert r.relative_orbit_number == 91
     assert r.resource_size == 128062896
     assert r.publication_date == "2018-10-11T09:51:25.135Z"
     assert r.cloud_cover == 3.4153
@@ -49,6 +50,10 @@ def test_class_Result():
     assert r.ingestion_date == "2018-10-11T09:47:28.990Z"
     assert r.download_url == "https://peps.cnes.fr/resto/collections/S2ST/\
 05959e39-ce82-5b39-9a30-e67ea0417204/download"
+    assert r.product_type == "S2MSI1C"
+    assert r.processing_level == "LEVEL1C"
+    assert r.storage_mode == "disk"
+    assert r.tile_id == "43UGS"
 
 
 # --- Client class ---
