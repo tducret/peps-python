@@ -86,11 +86,12 @@ class Client(object):
     def _get_with_retry(self, url):
         """ GET request with retry if a connection error happens """
         trials = 0
+        ret = None
         while trials < _MAX_REQUEST_TRIALS:
             try:
                 trials += 1
                 ret = self._get(url)
-            except requests.exceptions.ConnectionError:
+            except:
                 print("ConnectionError : {}".format(trials))
                 time.sleep(10)
                 pass
@@ -105,8 +106,10 @@ class Client(object):
                                        nb_resultats_max=nb_resultats_max,
                                        page=page)
         requete = self._get_with_retry(search_url)
-
-        retour = requete.text
+        if requete is not None:
+            retour = requete.text
+        else:
+            retour = None
         return retour
 
 
@@ -258,14 +261,18 @@ def find_products(id_tuile=None, collection=None, nb_resultats_max=100):
         # résultat dans la 2ème requête
         if nb_resultats_restants < nb_resultats_max_requete:
             nb_resultats_max_requete = nb_resultats_restants
+
         resultats_json = peps._find_products(
             id_tuile=id_tuile,
             collection=collection,
             nb_resultats_max=nb_resultats_max_requete, page=page)
 
-        resultats = Results(resultats_json)
-
-        liste_resultats.extend(resultats)
+        try:
+            resultats = Results(resultats_json)
+            liste_resultats.extend(resultats)
+        except:
+            print("The request didn't work properly")
+            pass
 
         if len(liste_resultats) >= nb_resultats_max:
             # Nous avons le nombre de résultats demandé
