@@ -16,7 +16,7 @@ def result_to_kibana(result):
 
 
 def main():
-    results = peps.find_products(nb_resultats_max=500)
+    results = peps.find_products(collection="S2", nb_resultats_max=100)
 
     with open("peps.json", "w") as f:
         for result in results:
