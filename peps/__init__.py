@@ -200,7 +200,8 @@ class Result(object):
 
 # --- Other functions ---
 def _build_search_url(id_tuile=None, collection=None,
-                      nb_resultats_max=100, page=1):
+                      nb_resultats_max=100, page=1, start_date=None,
+                      end_date=None):
         """ Construit l'url de requete PEPS """
         search_url = urljoin(_BASE_URL, "collections/")
 
@@ -208,12 +209,27 @@ def _build_search_url(id_tuile=None, collection=None,
             search_url = urljoin(search_url, "{}/".format(collection))
 
         search_url = urljoin(search_url, "search.json?lang=fr&\
-maxRecords={}&page={}&q=&".format(nb_resultats_max, page))
+maxRecords={}&page={}&q=".format(nb_resultats_max, page))
 
-        if (id_tuile is not None) and (id_tuile != ""):
-            search_url += "tileid={}".format(id_tuile)
+        search_url = _add_param_to_url(url=search_url,
+                                       param_name="tileid",
+                                       param_value=id_tuile)
+
+        search_url = _add_param_to_url(url=search_url,
+                                       param_name="startDate",
+                                       param_value=start_date)
+
+        search_url = _add_param_to_url(url=search_url,
+                                       param_name="completionDate",
+                                       param_value=end_date)
 
         return search_url
+
+
+def _add_param_to_url(url, param_name, param_value):
+    if (param_value is not None) and (param_value != ""):
+        url += "&{}={}".format(param_name, param_value)
+    return url
 
 
 def find_products(id_tuile=None, collection=None, nb_resultats_max=100):

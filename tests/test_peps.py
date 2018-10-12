@@ -83,7 +83,7 @@ def test_build_search_url():
     url = peps._build_search_url(collection="S2ST")
     print(url)
     assert url == _BASE_URL + "collections/S2ST/\
-search.json?lang=fr&maxRecords=100&page=1&q=&"
+search.json?lang=fr&maxRecords=100&page=1&q="
 
     # Tous sentinels confondus, tuile 31TCJ
     url = peps._build_search_url(id_tuile="31TCJ")
@@ -101,13 +101,20 @@ search.json?lang=fr&maxRecords=100&page=1&q=&tileid=31TCJ"
     url = peps._build_search_url(page=2)
     print(url)
     assert url == _BASE_URL + "collections/\
-search.json?lang=fr&maxRecords=100&page=2&q=&"
+search.json?lang=fr&maxRecords=100&page=2&q="
 
     # 10 résultats maximum
     url = peps._build_search_url(nb_resultats_max=10)
     print(url)
     assert url == _BASE_URL + "collections/\
-search.json?lang=fr&maxRecords=10&page=1&q=&"
+search.json?lang=fr&maxRecords=10&page=1&q="
+
+    # filtrage par date
+    url = peps._build_search_url(start_date="2018-10-11T14:04:00",
+                                 end_date="2018-10-12T14:05:00")
+    print(url)
+    assert url == _BASE_URL + "collections/search.json?lang=fr&maxRecords=100\
+&page=1&q=&startDate=2018-10-11T14:04:00&completionDate=2018-10-12T14:05:00"
 
 
 def test_find_products_basic():
