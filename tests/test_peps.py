@@ -149,3 +149,14 @@ def test_find_many_products():
     assert len(results) == _images_a_recuperer
     for result in results:
         assert result.collection == "S2ST"
+
+
+def test_find_products_for_one_specific_hour():
+    results = peps.find_products(start_date="2018-01-01T00:00:00",
+                                 end_date="2018-01-01T00:59:59",
+                                 nb_resultats_max=5)
+    assert type(results) == peps.Results
+    print()
+    for result in results:
+        print(result.acquisition_date)
+        assert "2018-01-01T00:" in result.acquisition_date

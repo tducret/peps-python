@@ -98,13 +98,15 @@ class Client(object):
         return ret
 
     def _find_products(self, id_tuile=None, collection=None,
-                       nb_resultats_max=100, page=1):
+                       nb_resultats_max=100, page=1, start_date=None,
+                       end_date=None):
         """ Rechercher les prise de vue pour l'identifiant de tuile indiqué """
 
         search_url = _build_search_url(id_tuile=id_tuile,
                                        collection=collection,
                                        nb_resultats_max=nb_resultats_max,
-                                       page=page)
+                                       page=page, start_date=start_date,
+                                       end_date=end_date)
         requete = self._get_with_retry(search_url)
         if requete is not None:
             retour = requete.text
@@ -235,7 +237,8 @@ def _add_param_to_url(url, param_name, param_value):
     return url
 
 
-def find_products(id_tuile=None, collection=None, nb_resultats_max=100):
+def find_products(id_tuile=None, collection=None, nb_resultats_max=100,
+                  start_date=None, end_date=None):
     """ Rechercher les prise de vue sur PEPS
     (avec gestion de la pagination) """
     peps = Client()
@@ -265,7 +268,8 @@ def find_products(id_tuile=None, collection=None, nb_resultats_max=100):
         resultats_json = peps._find_products(
             id_tuile=id_tuile,
             collection=collection,
-            nb_resultats_max=nb_resultats_max_requete, page=page)
+            nb_resultats_max=nb_resultats_max_requete, page=page,
+            start_date=start_date, end_date=end_date)
 
         try:
             resultats = Results(resultats_json)

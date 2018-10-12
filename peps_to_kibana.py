@@ -16,7 +16,10 @@ def result_to_kibana(result):
 
 
 def main():
-    results = peps.find_products(collection="S2", nb_resultats_max=100)
+    results = peps.find_products(start_date="2018-10-10T00:00:00",
+                                 end_date="2018-10-10T01:59:59",
+                                 nb_resultats_max=100000)
+    print("{} results".format(len(results)))
 
     with open("peps.json", "w") as f:
         for result in results:
