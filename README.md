@@ -79,3 +79,5 @@ S2A,47XPA,S2A_MSIL1C_20181012T052741_N0206_R105_T47XPA_20181012T063644,2018-10-1
 - [ ] Add multithreading?
 - [ ] Publish package to pypi
 - [ ] Calculate center of polygon and extract it for Kibana (geo_point), with shapely package
+- [ ] Add other search parameters : instrument, platform, level, product, sensor_mode, nrt, orbit (min, max, ascending/descending, location, keywords, area of interest)
+- [ ] Add possibility to download products
