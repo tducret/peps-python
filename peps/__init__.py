@@ -279,6 +279,7 @@ def find_products(id_tuile=None, collection=None, nb_resultats_max=100,
             liste_resultats.extend(resultats)
         except:
             print("The request didn't work properly")
+            resultats = Results()
             pass
 
         if len(liste_resultats) >= nb_resultats_max:
