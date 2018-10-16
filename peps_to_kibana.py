@@ -49,4 +49,10 @@ def main():
 # Puis faire l'import avec :
 # curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/peps/result/_bulk?pretty' --data-binary @peps_full.json
 
+# voire
+# for file in *
+# do
+#   curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/peps/result/_bulk?pretty' --data-binary @$file
+# done
+
 main()
