@@ -165,7 +165,7 @@ class Result(object):
             setattr(self, key, self.properties.get(value, ""))
 
         if (self.tile_id == "" and self.collection == "S2ST"):
-            self.tile_id = self.title.split("_")[-2][1:]
+            self.tile_id = _get_tile_id_from_title(self.title)
 
         temp = self.properties["services"]
         self.download_url = temp["download"]["url"]
