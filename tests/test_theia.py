@@ -43,6 +43,7 @@ def test_class_Result():
     assert r.absolute_orbit_number == 17351
     assert r.relative_orbit_number == 51
     assert r.production_date == "2018-10-19T03:25:21Z"
+    assert r.publication_date == "2018-10-19T03:35:23Z"
     assert r.cloud_cover == 0
     assert r.download_url == "https://theia.cnes.fr/atdistrib/resto2/\
 collections/SENTINEL2/630e9d9c-786d-5dc0-ba49-64880db092de/download"

@@ -27,6 +27,7 @@ _RESULT_PROPERTIES_MAPPING_DICT = {
     "relative_orbit_number": "relativeOrbitNumber",
     "quicklook_url": "quicklook",
     "resolution": "resolution",
+    "publication_date": "published",
     "production_date": "productionDate",
     "cloud_cover": "cloudCover",
     "product_type": "productType",

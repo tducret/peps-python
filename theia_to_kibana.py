@@ -4,8 +4,7 @@ from peps import theia
 import json
 from datetime import datetime, timedelta
 
-#_START_DATE = "2014-06-14"  # First Sentinel Sat data on 15/06/2014
-_START_DATE = "2018-10-17"
+_START_DATE = "2015-11-28"
 _END_DATE = datetime.today().strftime("%Y-%m-%d")
 
 _KIBANA_ATTRIBUTES = theia._RESULT_ATTRIBUTES
@@ -52,9 +51,6 @@ def main():
 # curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/theia/result/_bulk?pretty' --data-binary @theia_full.json
 
 # voire
-# for file in *.json
-# do
-#   curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/theia/result/_bulk?pretty' --data-binary @$file
-# done
+# for file in theia_*.json; do curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/theia/result/_bulk?pretty' --data-binary @$file; sleep 1; done
 
 main()
