@@ -1,0 +1,329 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "id": "62a262b6-c952-5008-beb9-98c7426bcf2a",
+    "totalResults": 126362,
+    "exactCount": false,
+    "startIndex": 1,
+    "itemsPerPage": 1,
+    "query": {
+      "originalFilters": {
+        "lang": "fr",
+        "maxRecords": "1",
+        "page": "1",
+        "collection": "SENTINEL2"
+      },
+      "appliedFilters": {
+        "lang": "fr",
+        "maxRecords": "1",
+        "page": "1",
+        "collection": "SENTINEL2"
+      },
+      "analysis": {
+        "query": null,
+        "language": "fr",
+        "analyze": {
+          "What": [],
+          "When": [],
+          "Where": [],
+          "Errors": [],
+          "Explained": []
+        },
+        "processingTime": 0.0000069141387939453
+      },
+      "processingTime": 2.8015789985657
+    },
+    "links": [
+      {
+        "rel": "self",
+        "type": "application/json",
+        "title": "self",
+        "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&maxRecords=1&page=1"
+      },
+      {
+        "rel": "search",
+        "type": "application/opensearchdescription+xml",
+        "title": "OpenSearch Description Document",
+        "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/describe.xml"
+      },
+      {
+        "rel": "next",
+        "type": "application/json",
+        "title": "suivant",
+        "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&maxRecords=1&page=2"
+      },
+      {
+        "rel": "last",
+        "type": "application/json",
+        "title": "dernier",
+        "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&maxRecords=1&page=120530"
+      }
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "630e9d9c-786d-5dc0-ba49-64880db092de",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.295183544177,
+              35.1982077222
+            ],
+            [
+              0.90985282793,
+              35.2250276976
+            ],
+            [
+              0.934626472887,
+              34.235521621
+            ],
+            [
+              -0.256177663581,
+              34.2096670331
+            ],
+            [
+              -0.295183544177,
+              35.1982077222
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "collection": "SENTINEL2",
+        "license": {
+          "licenseId": "unlicensed",
+          "hasToBeSigned": "never",
+          "grantedCountries": null,
+          "grantedOrganizationCountries": null,
+          "grantedFlags": null,
+          "viewService": "public",
+          "signatureQuota": -1,
+          "description": {
+            "shortName": "No license"
+          }
+        },
+        "productIdentifier": "SENTINEL2A_20181018-105349-280_L2A_T31SBU_D",
+        "parentIdentifier": "urn:ogc:def:EOP:CNES::SENTINEL2:",
+        "organisationName": "THEIA",
+        "startDate": "2018-10-18T10:53:49Z",
+        "completionDate": "2018-10-18T10:53:49Z",
+        "productType": "REFLECTANCE",
+        "processingLevel": "LEVEL2A",
+        "platform": "SENTINEL2A",
+        "instrument": "",
+        "resolution": 10,
+        "sensorMode": "",
+        "orbitNumber": 17351,
+        "relativeOrbitNumber": 51,
+        "quicklook": "https://theia.cnes.fr/data//SENTINEL2/2018/10/18/SENTINEL2A_20181018-105349-280_L2A_T31SBU_D_V1-9/SENTINEL2A_20181018-105349-280_L2A_T31SBU_D_V1-9_QKL_ALL.png",
+        "thumbnail": "https://theia.cnes.fr/data//SENTINEL2/2018/10/18/SENTINEL2A_20181018-105349-280_L2A_T31SBU_D_V1-9/SENTINEL2A_20181018-105349-280_L2A_T31SBU_D_V1-9_THB_ALL.png",
+        "updated": "2018-10-19T03:35:23Z",
+        "published": "2018-10-19T03:35:23Z",
+        "waterCover": "0",
+        "snowCover": "0",
+        "cloudCover": "0",
+        "keywords": [
+          {
+            "id": "b1f9871e461ff4c",
+            "name": "Afrique",
+            "normalized": "africa",
+            "type": "continent",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Afrique"
+          },
+          {
+            "id": "ace20e94bdcdfc0",
+            "name": "Algérie",
+            "normalized": "algeria",
+            "type": "country",
+            "parentHash": "b1f9871e461ff4c",
+            "value": 100,
+            "gcover": 0.52,
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Alg%C3%A9rie"
+          },
+          {
+            "id": "5e1af2add8bbe2c",
+            "name": "_all",
+            "normalized": "_all",
+            "type": "region",
+            "parentHash": "ace20e94bdcdfc0",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=_all"
+          },
+          {
+            "id": "190565e660c068b",
+            "name": "Saïda",
+            "normalized": "saida",
+            "type": "state",
+            "parentHash": "5e1af2add8bbe2c",
+            "value": 64.76,
+            "gcover": 84.25,
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Sa%C3%AFda"
+          },
+          {
+            "id": "cc8d5da149da2a8",
+            "name": "Tiaret",
+            "normalized": "tiaret",
+            "type": "state",
+            "parentHash": "5e1af2add8bbe2c",
+            "value": 14.23,
+            "gcover": 8.45,
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Tiaret"
+          },
+          {
+            "id": "e61259aab653fc6",
+            "name": "Mascara",
+            "normalized": "mascara",
+            "type": "state",
+            "parentHash": "5e1af2add8bbe2c",
+            "value": 8.22,
+            "gcover": 17.17,
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Mascara"
+          },
+          {
+            "id": "2c40679adc628a9",
+            "name": "El Bayadh",
+            "normalized": "el-bayadh",
+            "type": "state",
+            "parentHash": "5e1af2add8bbe2c",
+            "value": 7.03,
+            "gcover": 1.23,
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=%22El%20Bayadh%22"
+          },
+          {
+            "id": "cc44976681755cc",
+            "name": "Sidi Bel Abbès",
+            "normalized": "sidi-bel-abbes",
+            "type": "state",
+            "parentHash": "5e1af2add8bbe2c",
+            "value": 5.74,
+            "gcover": 9.06,
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=%22Sidi%20Bel%20Abb%C3%A8s%22"
+          },
+          {
+            "id": "a0e4a10aa754ab4",
+            "name": "Northern",
+            "type": "location",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Northern"
+          },
+          {
+            "id": "f3221bcc6ca49ca",
+            "name": "Autumn",
+            "type": "season",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Autumn"
+          },
+          {
+            "id": "7dd5ce6fe9bcea1",
+            "name": "SENTINEL2",
+            "type": "collection",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=SENTINEL2"
+          },
+          {
+            "id": "988188952c531b3",
+            "name": "REFLECTANCE",
+            "type": "productType",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=REFLECTANCE"
+          },
+          {
+            "id": "9ff2d85eb9bf912",
+            "name": "LEVEL2A",
+            "type": "processingLevel",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=LEVEL2A"
+          },
+          {
+            "id": "be5cf5114e2c136",
+            "name": "sentinel2a",
+            "type": "platform",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=sentinel2a"
+          },
+          {
+            "id": "75646154e16ab7d",
+            "name": "",
+            "type": "instrument",
+            "parentHash": "be5cf5114e2c136",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q="
+          },
+          {
+            "id": "533654c4b9562e8",
+            "name": "",
+            "type": "sensorMode",
+            "parentHash": "75646154e16ab7d",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q="
+          },
+          {
+            "id": "429f9571d35a7f4",
+            "name": "2018",
+            "type": "year",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=2018"
+          },
+          {
+            "id": "49e1a4224ca0171",
+            "name": "Octobre",
+            "type": "month",
+            "parentHash": "429f9571d35a7f4",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=Octobre"
+          },
+          {
+            "id": "67d163fd3e3d342",
+            "name": "18",
+            "type": "day",
+            "parentHash": "49e1a4224ca0171",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/api/collections/SENTINEL2/search.json?&lang=fr&q=18"
+          }
+        ],
+        "centroid": {
+          "type": "Point",
+          "coordinates": [
+            0.319721464355,
+            34.71734736535
+          ]
+        },
+        "version": "1-9",
+        "percentSaturatedPixelsMax": null,
+        "percentNoDataPixelsMax": null,
+        "nbColInterpolationErrorMax": null,
+        "percentGroundUsefulPixels": null,
+        "percentUsefulPixelsMin": null,
+        "location": "T31SBU",
+        "productionDate": "2018-10-19T03:25:21Z",
+        "bands": "B2;B3;B4;B5;B6;B7;B8;B8A;B11;B12",
+        "thermBands": "",
+        "nb_cols": 10980,
+        "nb_rows": 10980,
+        "tileId": null,
+        "title": "SENTINEL2A_20181018-105349-280_L2A_T31SBU_D",
+        "oragnisationName": "CNES",
+        "services": {
+          "browse": {
+            "title": "Display full resolution product on map",
+            "layer": {
+              "type": "WMS",
+              "url": "https://theia.cnes.fr/atdistrib/resto2/collections/SENTINEL2/630e9d9c-786d-5dc0-ba49-64880db092de/wms?map=/nfs/muscate_data//muscate.map&idProduit=SENTINEL2A_20181018-105349-280_L2A_T31SBU_D&anneeProduit=ANNEEPRODUIT&moisProduit=MOISPRODUIT&jourProduit=JOURPRODUIT&versionProduit=1-9&idProjet=SENTINEL2&LAYERS=muscate&FORMAT=image%2Fpng&TRANSITIONEFFECT=resize&TRANSPARENT=true&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A3857&BBOX={:bbox3857:}&WIDTH=256&HEIGHT=256",
+              "layers": ""
+            }
+          },
+          "download": {
+            "url": "https://theia.cnes.fr/atdistrib/resto2/collections/SENTINEL2/630e9d9c-786d-5dc0-ba49-64880db092de/download",
+            "mimeType": "application/zip",
+            "checksum": "a6e59e6aa2ad1f522700f533d8a5ff41"
+          }
+        },
+        "links": [
+          {
+            "rel": "self",
+            "type": "application/json",
+            "title": "Lien GeoJSON pour 630e9d9c-786d-5dc0-ba49-64880db092de",
+            "href": "https://theia.cnes.fr/atdistrib/resto2/collections/SENTINEL2/630e9d9c-786d-5dc0-ba49-64880db092de.json?&lang=fr"
+          },
+          {
+            "rel": "via",
+            "type": "application/unknown",
+            "title": "Lien vers le fichier de métadonnés de 630e9d9c-786d-5dc0-ba49-64880db092de",
+            "href": "https://theia.cnes.fr/data//SENTINEL2/ANNEEPRODUIT/MOISPRODUIT/JOURPRODUIT/SENTINEL2A_20181018-105349-280_L2A_T31SBU_D_V1-9/SENTINEL2A_20181018-105349-280_L2A_T31SBU_D_V1-9_MTD_ALL.xml"
+          }
+        ]
+      }
+    }
+  ]
+}
