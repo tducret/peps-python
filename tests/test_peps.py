@@ -12,7 +12,7 @@ _BASE_URL = "https://peps.cnes.fr/resto/api/"
 
 
 def json_file_to_string(filename):
-    with open(filename) as f:
+    with open(filename, 'rb') as f:
         return f.read()
 
 _PEPS_JSON_ONE_RESULT_STR = json_file_to_string(
